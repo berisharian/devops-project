@@ -1,23 +1,28 @@
-version: "3"
+version: '3.8'
+
 services:
-  #  Create a service named db.
-  wp-db:
-    #   Use the Docker Image postgres. This will pull the newest release.
-    image: "postgres"
-    #   Give the container the name my_postgres. You can changes to something else.
-    container_name: "wp2020_eshop"
-    #   Setup the username, password, and database name. You can changes these values.
+  postgres:
+    image: arm64v8/postgres:13
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=kujtim123
-      - POSTGRES_DB=book-store
-    #   Maps port 5432 (localhost) to port 5432 on the container. You can change the ports to fix your needs.
+      POSTGRES_DB: book-store
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Admin12345
     ports:
-      - "5432:5432"
-    #   Set a volume some that database is not lost after shutting down the container.
-    #   I used the name postgres-data but you can changed it to something else.
+      - "5433:5432"
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    ports:
+      - "8181:8181"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/book-store
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: Admin12345
+    depends_on:
+      - postgres
+
 volumes:
-  postgres-data:
+  postgres_data:
 
