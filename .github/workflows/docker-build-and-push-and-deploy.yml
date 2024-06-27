@@ -25,8 +25,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: lab3
-          file: lab3/Dockerfile
+          context: ./lab3
           push: true
           tags: arianberisha/bookstore:latest
 
@@ -49,5 +48,6 @@ jobs:
       
       - name: Pull and deploy with Docker Compose
         run: |
+          cd lab3
           docker-compose pull
           docker-compose up -d
