@@ -26,7 +26,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./lab3
-          file: ./lab3/Dockerfile
           push: true
           tags: arianberisha/bookstore:latest
 
