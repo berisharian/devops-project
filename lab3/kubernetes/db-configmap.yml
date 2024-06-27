@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: db-configmap
 data:
-  SPRING_DATASOURCE_URL: jdbc:postgresql://your-postgres-host:5432/book-store 
+  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/book-store 
   SPRING_DATASOURCE_USERNAME: postgres	
   POSTGRES_DB: book-store
   POSTGRES_USER: postgres
