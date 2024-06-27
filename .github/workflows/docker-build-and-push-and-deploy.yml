@@ -25,7 +25,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: ./lab3
+          context: /lab3
           push: true
           tags: arianberisha/bookstore:latest
 
